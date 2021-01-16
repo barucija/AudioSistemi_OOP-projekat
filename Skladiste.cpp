@@ -2,12 +2,9 @@
 #include <iostream>
 #include <memory>
 #include "Oprema.h"
-#include<fstream>
 
 using std::cout;
 using std::cin;
-
-int Skladiste::ukupanBrojOpremeNaStanju = 0;
 
 Skladiste::Skladiste()
 {
@@ -30,12 +27,10 @@ int Skladiste::getKapacitetStvariUSkladistu()
 	return this->kapacitetStvariUSkladistu;
 }
 
-void Skladiste::setSpremiOpremuUSkladiste()
+void Skladiste::spremiOpremuUSkladiste()
 {
 
-
-
-	if (this->getKapacitetStvariUSkladistu() == this->getUkupanBrojOpremeNaStanju()) {
+	if (this->getKapacitetStvariUSkladistu() == Oprema::ukupanBrojOpremeNaStanju) {
 
 		cout << "\t\t\tSkladiste je puno!\n";
 
@@ -43,71 +38,83 @@ void Skladiste::setSpremiOpremuUSkladiste()
 
 	else {
 
-		std::shared_ptr<Oprema> temp = std::make_shared<Oprema>();
-		temp->unesiOpremu();
+		Oprema temp;
+		temp.unesiOpremu();
+		int brojac = 0;
 
-		this->oprema.push_back(*temp);
+		for (int i = 0; i < this->oprema.size(); i++) {
 
-		Skladiste::ukupanBrojOpremeNaStanju += temp->getBrojOpremeNaStanju();
+			if (_strcmpi(this->oprema[i].getNazivOpreme(), temp.getNazivOpreme()) == 0) {
+
+				brojac++;
+
+				if (temp.getBrojOpremeNaStanju() + Oprema::ukupanBrojOpremeNaStanju > this->getKapacitetStvariUSkladistu()) {
+					cout << "\t\t\tTa brojka nadmasuje ukupni kapacitet za skladistenje!\n";
+				}
+
+				else {
+					this->oprema[i].povecajBrojOpremeNaStanju(temp.getBrojOpremeNaStanju());
+					cout << "\t\t\tUspjesno skladistena oprema!\n";
+
+					Oprema::ukupanBrojOpremeNaStanju += temp.getBrojOpremeNaStanju();
+				}
+
+			}
+
+			if (brojac == 0) {
+
+				if (temp.getBrojOpremeNaStanju() + Oprema::ukupanBrojOpremeNaStanju > this->getKapacitetStvariUSkladistu()) {
+					cout << "\t\t\tTa brojka nadmasuje ukupni kapacitet za skladistenje!\n";
+				}
+
+				else {
+					this->oprema[i].povecajBrojOpremeNaStanju(temp.getBrojOpremeNaStanju());
+					cout << "\t\t\tUspjesno skladistena oprema!\n";
+
+					Oprema::ukupanBrojOpremeNaStanju += temp.getBrojOpremeNaStanju();
+				}
+
+			}
+
+		}
 
 	}
 
 }
-
-vector<Oprema>& Skladiste::getSpremljenoIzSkladista()
-{
-
-	return this->oprema;
-
-}
-
 
 void Skladiste::uzmiIzSkladista()
 {
 
 	char narudzba[60];
 
-	std::ofstream fiskalniRacun("fiskalni_racun.txt", std::ios::app);
+	cout << "\t\t\tMolimo unesite naziv opreme: ";
+	cin.getline(narudzba, 60);
 
-	if (fiskalniRacun.is_open()) {
+	int brojac = 0;
 
-		cout << "\t\t\tMolimo unesite naziv opreme: ";
-		cin.getline(narudzba, 60);
+	for (int i = 0; i < this->oprema.size(); i++) {
 
-		int brojac = 0;
+		if (_strcmpi(this->oprema[i].getNazivOpreme(), narudzba) == 0) {
 
-		for (int i = 0; i < this->oprema.size(); i++) {
+			brojac++;
 
-			if (_strcmpi(this->oprema[i].getNazivOpreme(), narudzba) == 0) {
+			cout << "\t\t\tKoliko primjeraka ove opreme zelite naruciti?\n\t\tUnesite kolicinu: ";
+			int kolicinaZaNaruciti;
+			cin >> kolicinaZaNaruciti;
+			cin.ignore();
 
-				brojac++;
+			if (this->oprema[i].getBrojOpremeNaStanju() < kolicinaZaNaruciti) {
 
-				cout << "\t\t\tKoliko primjeraka ove opreme zelite naruciti?\n\t\tUnesite kolicinu: ";
-				int kolicinaZaNaruciti;
-				cin >> kolicinaZaNaruciti;
-				cin.ignore();
-
-				if (this->oprema[i].getBrojOpremeNaStanju() < kolicinaZaNaruciti) {
-
-					cout << "\t\t\tNa stanju nemamo toliki broj primjeraka!";
-
-				}
-
-				else {
-
-					this->oprema[i].smanjiBrojOpremeNaStanju(kolicinaZaNaruciti);
-					Skladiste::ukupanBrojOpremeNaStanju -= kolicinaZaNaruciti;
-
-				}
+				cout << "\t\t\tNa stanju nemamo toliki broj primjeraka!";
 
 			}
 
-			cin.ignore();
+			else {
 
-			fiskalniRacun << this->oprema[i].getNazivOpreme() << this->oprema[i].getBrendOpreme() << this->oprema[i].getVrstaOpreme() << this->oprema[i].getCijenaOpreme();
+				this->oprema[i].smanjiBrojOpremeNaStanju(kolicinaZaNaruciti);
+				Oprema::ukupanBrojOpremeNaStanju -= kolicinaZaNaruciti;
 
-
-			fiskalniRacun.close();
+			}
 
 		}
 
@@ -122,7 +129,7 @@ void Skladiste::prikazSkladista()
 
 	cout << "\t\t\tSkladiste firme Rental Parter\n\n";
 
-	if (this->getSpremljenoIzSkladista().size() == 0) {
+	if (this->oprema.size() == 0) {
 
 		cout << "\t\t\tSkladiste je trenutno prazno!\n";
 
@@ -130,7 +137,7 @@ void Skladiste::prikazSkladista()
 
 	else {
 
-		for (int i = 0; i < this->getSpremljenoIzSkladista().size(); i++) {
+		for (int i = 0; i < this->oprema.size(); i++) {
 
 			cout << "\t\tNaziv opreme\t\tBrend\t\tNa stanju primjeraka\t\tCijena\n";
 			cout << "\t\t" << this->oprema[i].getNazivOpreme() << "\t\t" << this->oprema[i].getBrendOpreme() << "\t\t" << this->oprema[i].getBrojOpremeNaStanju() << "\t\t" << this->oprema[i].getCijenaOpreme() << "\n";
@@ -185,45 +192,3 @@ void Skladiste::pretragaPoNazivu()
 
 }
 
-void Skladiste::fiskalni_racun()
-{
-
-	std::ofstream fiskalni_racun("fiskalni_racun.txt");
-
-	for (int i = 0; i < this->oprema.size(); i++) {
-
-		fiskalni_racun << "__________________________________________________________________________________________________________________________\n\n";
-		fiskalni_racun << std::endl;
-
-		fiskalni_racun << "\t\t\t\t\t\tNaziv artikla: " << this->oprema[i].getNazivOpreme() << std::endl;
-		fiskalni_racun << "\t\t\t\t\t\tBrend artikla: " << this->oprema[i].getBrendOpreme() << std::endl;
-		fiskalni_racun << "\t\t\t\t\t\tVrsta opreme: ";
-		if (this->oprema[i].getVrstaOpreme() == audio_oprema) {
-
-			fiskalni_racun << "Audio oprema.\n";
-
-		}
-
-		else {
-
-			fiskalni_racun << "Binska oprema.\n";
-
-
-		}
-		fiskalni_racun << "\t\t\t\t\t\tCijena opreme: " << this->oprema[i].getCijenaOpreme() << std::endl;
-
-	}
-
-}
-
-int Skladiste::getUkupanBrojOpremeNaStanju()
-{
-	return Skladiste::ukupanBrojOpremeNaStanju;
-}
-
-void Skladiste::naStanjuJeTrenutnoXOpreme()
-{
-
-	cout << "\t\t\tU skladistu je trenutno " << Skladiste::ukupanBrojOpremeNaStanju << " dijelova.\n";
-
-}

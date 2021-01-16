@@ -25,6 +25,7 @@ public:
 	void setRadnik();
 	vector<Radnik>& getRadnici();
 
+	void unosRadnika();
 	void ispisRadnika();
 	void pretragaRadnik(char ime[]);
 	void ispisPlata();

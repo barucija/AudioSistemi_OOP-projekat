@@ -1,14 +1,15 @@
 #include "Oprema.h"
-#include <fstream>
+
 #include <iostream>
 
 using std::cout;
 using std::cin;
 
+int Oprema::ukupanBrojOpremeNaStanju = 0;
 
 void Oprema::setNazivOpreme()
 {
-
+		
 	cout << "\t\t\tMolimo Vas unesite naziv opreme: ";
 	cin.getline(this->nazivOpreme, 20);
 
@@ -24,7 +25,7 @@ char* Oprema::getNazivOpreme()
 void Oprema::setBrendOpreme()
 {
 
-	cout << "\t\t\tMolimo unesite naziv prozivodjaca opreme: ";
+	cout << "\t\t\tMolimo unesite naziv prozivodjaca audio opreme: ";
 	cin.getline(this->brendAudioOpreme, 20);
 
 }
@@ -46,10 +47,10 @@ void Oprema::setCijenaOpreme()
 
 }
 
-float Oprema::getCijenaOpreme()
+char* Oprema::getCijenaOpreme()
 {
 
-	return this->cijenaOpreme;
+	return this->getCijenaOpreme();
 
 }
 
@@ -85,16 +86,12 @@ VrstaOpreme Oprema::getVrstaOpreme()
 
 void Oprema::unesiOpremu()
 {
-
+	
 	system("cls");
-
-
-
-	cin.ignore();
 
 	this->setNazivOpreme();
 	this->setBrendOpreme();
-
+	
 	cout << "\t\t\tDa li je oprema audio ili binska?\n";
 	cout << "\t\t\t1. Audio oprema\n";
 	cout << "\t\t\t2. Binska oprema\n";
@@ -121,7 +118,6 @@ void Oprema::unesiOpremu()
 
 }
 
-
 void Oprema::povecajBrojOpremeNaStanju(int x)
 {
 
@@ -136,3 +132,9 @@ void Oprema::smanjiBrojOpremeNaStanju(int x)
 
 }
 
+void Oprema::naStanjuJeTrenutnoXOpreme()
+{
+
+	cout << "\t\t\tU skladistu je trenutno " << Oprema::ukupanBrojOpremeNaStanju << " dijelova.\n";
+
+}

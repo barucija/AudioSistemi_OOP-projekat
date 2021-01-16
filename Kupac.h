@@ -1,15 +1,14 @@
 #pragma once
 #include "Datum.h"
 #include "Skladiste.h"
-#include "LicniPodaci.h"
 
 enum vrstaNacinaNarucivanja { e_mail = 0, broj_telefona, dolazak_u_radnju };
 
-class Kupac : public LicniPodaci
+class Kupac
 {
 private:
 
-	char grad[15], adresaStanovanja[30];
+	char ime[20], prezime[30], grad[15], adresaStanovanja[30];
 	vrstaNacinaNarucivanja vrsta;
 	Datum datum;
 	Skladiste uzmiNardzbu;
@@ -19,6 +18,12 @@ private:
 public:
 
 	Kupac();
+
+	void setIme();
+	char* getIme();
+
+	void setPrezime();
+	char* getPrezime();
 
 	void setGrad();
 	char* getGrad();
