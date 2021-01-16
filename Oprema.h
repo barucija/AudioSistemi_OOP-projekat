@@ -31,7 +31,7 @@ public:
 	char* getBrendOpreme();
 
 	void setCijenaOpreme();
-	char* getCijenaOpreme();
+	float getCijenaOpreme();
 
 	void setBrojOpremeNaStanju();
 	int getBrojOpremeNaStanju();
@@ -40,9 +40,6 @@ public:
 
 	void povecajBrojOpremeNaStanju(int x);
 	void smanjiBrojOpremeNaStanju(int x);
-
-	static int ukupanBrojOpremeNaStanju;
-	static void naStanjuJeTrenutnoXOpreme();
 
 	~Oprema() {};
 

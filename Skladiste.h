@@ -10,6 +10,8 @@ class Skladiste
 private:
 
 	int kapacitetStvariUSkladistu;
+
+	static int ukupanBrojOpremeNaStanju;
 	vector<Oprema> oprema;
 
 public:
@@ -19,13 +21,21 @@ public:
 	void setKapacitetStvariUSkladistu();
 	int getKapacitetStvariUSkladistu();
 
-	void spremiOpremuUSkladiste();
+	void setSpremiOpremuUSkladiste();
+	vector<Oprema>& getSpremljenoIzSkladista();
+
 
 	void uzmiIzSkladista();
 
 	void prikazSkladista();
 
 	void pretragaPoNazivu();
+
+	void fiskalni_racun();
+
+	int getUkupanBrojOpremeNaStanju();
+
+	static void naStanjuJeTrenutnoXOpreme();
 
 	~Skladiste() {};
 };

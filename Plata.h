@@ -1,10 +1,11 @@
 #pragma once
 #include "Radnik.h"
+#include <iostream>
 #include <vector>
 
 using std::vector;
 
-class Plata
+class Plata: virtual public Radnik
 {
 
 private:
@@ -25,7 +26,10 @@ public:
 	void setRadnik();
 	vector<Radnik>& getRadnici();
 
-	void unosRadnika();
+
+	friend std::istream& operator>>(std::istream& stream, Plata& p);
+	friend std::ostream& operator<<(std::ostream& stream, Plata& p);
+
 	void ispisRadnika();
 	void pretragaRadnik(char ime[]);
 	void ispisPlata();

@@ -45,7 +45,6 @@ void Meni::adminMeni()
 	cout << "\t\t\t |_____________________________________|\n";
 
 	cout << "\n\n\t\t\t    Birate opciju pod rednim brojem: ";
-
 }
 
 void Meni::uposlenikMeni()
@@ -71,6 +70,7 @@ void Meni::uposlenikMeni()
 	cout << "\t\t\t          1. Kreiranje skladista (samo pri prvom pokretanju se koristi)\n";
 	cout << "\t\t\t          2. Unos opreme u sistem\n";
 	cout << "\t\t\t          3. Popunjenost skladista\n";
+	cout << "\t\t\t          4. Prikaz skladista\n";
 
 	cout << "\t\t\t          7. Promjena nacina rada\n";
 	cout << "\t\t\t          10. Izlaz\n";
@@ -89,7 +89,6 @@ void Meni::uposlenikMeni()
 	cout << "\t\t\t |_____________________________________|\n";
 
 	cout << "\n\n\t\t\t    Birate opciju pod rednim brojem: ";
-
 }
 
 void Meni::kupacMeni()
@@ -116,6 +115,7 @@ void Meni::kupacMeni()
 	cout << "\t\t\t          2. Pretraga skladista po nazivu opreme\n";
 	cout << "\t\t\t          3. Pretraga skladista po brendu opreme\n";
 	cout << "\t\t\t          4. Narudzba\n";
+	cout << "\t\t\t          5. Fiskalni racun\n";
 
 	cout << "\t\t\t          7. Promjena nacina rada\n";
 	cout << "\t\t\t          10. Izlaz\n";
@@ -125,7 +125,7 @@ void Meni::kupacMeni()
 	cout << endl;
 
 	cout << "_____________________________________________________________________________________________\n\n";
-
+	
 	cout << endl;
 
 	cout << "\t\t\t  _____________________________________\n";
@@ -134,7 +134,6 @@ void Meni::kupacMeni()
 	cout << "\t\t\t |_____________________________________|\n";
 
 	cout << "\n\n\t\t\t    Birate opciju pod rednim brojem: ";
-
 }
 
 void Meni::krajnjiMeni()

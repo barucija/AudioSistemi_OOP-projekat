@@ -7,41 +7,9 @@ using std::cin;
 Kupac::Kupac()
 {
 
-	strcpy_s(this->ime, "Ime");
-	strcpy_s(this->prezime, "Prezime");
 	strcpy_s(this->adresaStanovanja, "Ulica");
 	strcpy_s(this->email, "Email");
 	strcpy_s(this->brojTelefona, "brojTelefona");
-
-}
-
-void Kupac::setIme()
-{
-
-	cout << "\n\t\t\tMolimo unesite svoje ime: ";
-	cin.getline(this->ime, 20);
-
-}
-
-char* Kupac::getIme()
-{
-
-	return this->ime;
-
-}
-
-void Kupac::setPrezime()
-{
-
-	cout << "\t\t\tMolimo unesite svoje prezime: ";
-	cin.getline(this->prezime, 30);
-
-}
-
-char* Kupac::getPrezime()
-{
-
-	return this->prezime;
 
 }
 

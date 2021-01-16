@@ -45,7 +45,9 @@ void Plata::setRadnik()
 {
 	std::shared_ptr<Radnik> temp = std::make_shared<Radnik>();
 
-	temp->unosRadnika();
+	Plata radnik;
+	cin >> radnik;
+	*temp = radnik;
 	this->radnici.push_back(*temp);
 	this->setOsnovica();
 }
@@ -54,6 +56,7 @@ vector<Radnik>& Plata::getRadnici()
 {
 	return this->radnici;
 }
+
 
 void Plata::ispisRadnika()
 {
@@ -226,4 +229,79 @@ void Plata::otpustiRadnika()
 
 		this->ispisRadnika();
 
+}
+
+std::istream& operator>>(std::istream& stream, Plata& p)
+{
+
+	p.setIme();
+	p.setPrezime();
+	p.setGodinaStaza();
+	p.setSatnica();
+
+	cout << "\t\t\tRadnik je: ";
+
+	if (p.getVrsta() == terenski_radnik) {
+		cout << "Terenski radnik.\n";
+	}
+
+	else {
+		cout << "Kancelarijski radnik.\n";
+	}
+
+	cout << "\n\t\t\tDa li zelite promijeniti vrstu posla koji radnik obavlja?\n\t\t\t1.Da\n\t\t\t2.Ne\n\t\t\tOdabir: ";
+	int izborPromjeneVrste;
+	cin >> izborPromjeneVrste;
+	cin.ignore();
+
+	switch (izborPromjeneVrste)
+	{
+	case 1:
+		p.promjenaVrste();
+		cout << "\t\t\tVrsta posla je promijenjena!\n";
+		break;
+	case 2:
+		cout << "\t\t\tVrsta posla ostaje ista!\n";
+		break;
+	default:
+		cout << "\t\t\tPogresan unos!";
+		break;
+	}
+	return stream;
+}
+
+std::ostream& operator<<(std::ostream& stream, Plata& p)
+{
+	stream << std::endl;
+	stream << "\t\t\t";
+	stream.width(5);
+	stream << std::right << "R. br.";
+	stream.width(21);
+	stream << std::right << "Ime i prezime";
+	stream.width(18);
+	stream << std::right << "Vrsta radnika";
+	stream << "\n\t\t\t---------------------------------------------------\n";
+
+	for (int i = 0; i < p.getRadnici().size(); i++) {
+
+		stream << "\t\t\t";
+
+		stream.width(5);
+		stream << std::left << i + 1;
+
+		stream.width(14);
+		stream << std::right << p.getRadnici()[i].getIme() << " " << p.getRadnici()[i].getPrezime();
+
+		if (p.getRadnici()[i].getVrsta() == terenski_radnik) {
+			stream.width(22);
+			stream << std::right << "Terenski radnik";
+		}
+		else {
+			stream.width(22);
+			stream << std::right << "Kancelarijski";
+		}
+
+		stream << "\n";
+	}
+	return stream;
 }

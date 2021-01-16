@@ -8,8 +8,7 @@ public:
 	void uposlenikMeni();
 	void kupacMeni();
 
-	void krajnjiMeni();
 	void pocetniMeni();
-
+	void krajnjiMeni();
 };
 
