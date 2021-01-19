@@ -33,7 +33,6 @@ public:
 	void ispisRadnika();
 	void pretragaRadnik(char ime[]);
 	void ispisPlata();
-	void ispisPlataUslov(int s1, int s2);
 	void otpustiRadnika();
 
 	~Plata() {};

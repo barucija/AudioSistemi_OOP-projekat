@@ -48,10 +48,9 @@ void Oprema::setCijenaOpreme()
 
 float Oprema::getCijenaOpreme()
 {
-
 	return this->cijenaOpreme;
-
 }
+
 
 void Oprema::setBrojOpremeNaStanju()
 {
@@ -99,9 +98,8 @@ void Oprema::unesiOpremu()
 	cout << "\t\t\t1. Audio oprema\n";
 	cout << "\t\t\t2. Binska oprema\n";
 
-	cout << "\t\t\t";
-
 	int izborVrsteOpreme;
+	cout << "\t\t\tVas izbor je: ";
 	cin >> izborVrsteOpreme;
 	cin.ignore();
 

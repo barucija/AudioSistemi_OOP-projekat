@@ -37,50 +37,40 @@ Input-i su osigurani za većinu mogućih grešaka koje korisnik može napraviti,
 *Navedeni elementi koji su bili „must have“ u ovom projektu
 
 
-1.	
-3 klase:
+1.  Tri (3) klase:
 
 Pored tri (3) klase koje su bile obavezne, u projektu se nalazi još osam (8) koje su također po našem mišljenju bile neophodne kako bi sistem dosegao svoj maksimum.
 Klase: „Kupac“, „Meni“, „Oprema“, „Plata“, „Radnik“, „Skladište“, „Lični podaci“.
 
-2.
-Enumeracije
+2.  Enumeracije
 
 Mnoge klase imaju u svom sastavu enumeracije kao što npr. klasa „Radnik“ ima enumeraciju koja daje mogućnosti administraciji firme pri zapošljavanju radnika izbor između vrste posla koji će taj radnik obavljati. S tim enumeracija daje izbor „terenski radnik“, ali i „kancelarijski“.
 Na ovom primjeru su zasnovane i ostale enumeracije, apropo tome nije ih potrebno navoditi.
 
-3.
-Pametni pokazivači
+3.  Pametni pokazivači
 
 Pametni pokazivači su iskorišteni kao varijable koje su se koristile pri računanju mjesečnih prihoda. Ovo je samo jedan od primjera.
 
-4.
-Iznimke
+4.  Iznimke
 
 Iskorištene u sektoru koji vrši pretragu radnika po imenu.
 
-5.
-Virtuelne funkcije
+5.  Virtuelne funkcije
 
-6.
-Preopterećene operatore
+6.  Preopterećene operatore
 
 Korišteno pri unosi i ispisu radnika koje unosi administracija firme, u klasi „Plata“.
 
-7.
-Nasljeđivanje
+7.  Nasljeđivanje
 
 Korišteno pri upotrebi i primjeni ličnih podataka osoba koje unose iste u sistem, bilo to riječ o zaposlenom u firmi ili korisniku/kupcu koji želi izvršiti narudžbu.
 
-8.
-Rad sa datotekama
+8.  Rad sa datotekama
 
 Ispisivanje fiskalnog računa kroz tekstualnu datoteku.
 
-9.
-Meni
+9.  Meni
 
 Svaki od načina rada, za administraciju/zaposlene/kupce ima svoj meni, kao i meni pri samom pokretanju programa, ali i završetku istog.
 
-![Graphic design](https://github.com/OOP-PTF-2020/Grupa18/blob/main/IMAGE/newtest.png)
-![Our photo](https://github.com/OOP-PTF-2020/Grupa18/blob/main/IMAGE/newtest_us.png)
+![Graphic design](https://github.com/OOP-PTF-2020/Grupa18/blob/main/IMAGE/newtest-finished.png)

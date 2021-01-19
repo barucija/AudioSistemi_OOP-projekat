@@ -4,4 +4,4 @@ ________________________________________________________________________________
 						Naziv artikla: Zvucnik
 						Brend artikla: JBL
 						Vrsta opreme: Audio oprema.
-						Cijena opreme: 100
+						Cijena opreme: 55

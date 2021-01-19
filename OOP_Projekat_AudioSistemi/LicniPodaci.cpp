@@ -15,7 +15,7 @@ LicniPodaci::LicniPodaci()
 void LicniPodaci::setIme()
 {
 
-	cout << "\n\t\t\tMolimo unesite svoje ime: ";
+	cout << "\n\t\t\tMolimo unesite ime: ";
 	cin.getline(this->ime, 20);
 
 }
@@ -30,7 +30,7 @@ char* LicniPodaci::getIme()
 void LicniPodaci::setPrezime()
 {
 
-	cout << "\t\t\tMolimo unesite svoje prezime: ";
+	cout << "\t\t\tMolimo unesite prezime: ";
 	cin.getline(this->prezime, 30);
 
 }

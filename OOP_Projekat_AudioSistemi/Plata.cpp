@@ -130,8 +130,21 @@ void Plata::pretragaRadnik(char ime[])
 
 void Plata::ispisPlata()
 {
-	cout << "Mjesec: " << this->getMjesec() << "\n";
 
+	cout << "\n\t\tUnesite mjesec za koji zelite vidjeti pregled primanja: ";
+	char mjesec_za_platu[10];
+	cin.getline(mjesec_za_platu, 10);
+	
+	system("PAUSE>null");
+	system("CLS");
+	
+	cout << "\n\n\t\t\t RENTAL PARTNER\n";
+	cout << "\t\t\t  ______________\n";
+	cout << "\t\t\t |              |\n";
+	cout << "\t\t\t |  ISPIS PLATA |\n";
+	cout << "\t\t\t |______________|\n";
+
+	cout << "\n\n\t\t\tMjesec: " << mjesec_za_platu << "\n";
 
 	if (this->getRadnici().size() == 0) {
 		cout << "\t\t\tNema unesenih radnika u sistemu!\n";
@@ -146,13 +159,13 @@ void Plata::ispisPlata()
 		cout.width(14);
 		cout << std::right << "Staz";
 		cout.width(14);
-		cout << std::right << "Topli";
+		cout << std::right << "Bruto";
 		cout.width(14);
-		cout << std::right << "Ukupno";
+		cout << std::right << "Neto";
 		cout << "\n-----------------------------------------------------------------------------\n";
 
 		for (int i = 0; i < this->getRadnici().size(); i++) {
-			float topli = 0, ukupno = 0;
+			float bruto = 0, neto = 0;
 			cout.width(5);
 			cout << std::left << i + 1;
 
@@ -162,48 +175,24 @@ void Plata::ispisPlata()
 			cout.width(14);
 			cout << std::right << this->radnici[i].getGodinaStaza();
 
-			topli = this->radnici[i].getSatnica() * Plata::osnovica + this->radnici[i].getGodinaStaza() * 10;
+			bruto = this->radnici[i].getSatnica() * Plata::osnovica + this->radnici[i].getGodinaStaza() * 10;
 			cout.width(16);
-			cout << std::right << topli;
+			cout << std::right << bruto;
 
-			ukupno = (topli * (1 - Plata::doprinosi)) * (1 - Plata::porez);
+			neto = (bruto * (1 - Plata::doprinosi)) * (1 - Plata::porez);
 
 			if (this->radnici[i].getVrsta() == terenski_radnik) {
 				cout.width(16);
-				cout << std::right << ukupno;
+				cout << std::right << neto;
 			}
 
 			else {
-				ukupno = ukupno * 1.25;
+				neto = neto * 1.25;
 				cout.width(16);
-				cout << std::right << ukupno;
+				cout << std::right << neto;
 			}
 
 			cout << "\n";
-		}
-	}
-}
-
-void Plata::ispisPlataUslov(int s1, int s2)
-{
-	if (this->getRadnici().size() == 0) {
-		cout << "Nema unesenih radnika u sistemu!\n";
-	}
-	else {
-		Plata* temp = new Plata();
-
-		for (int i = 0; i < this->getRadnici().size(); i++) {
-			if (this->radnici[i].getGodinaStaza() > s1 || this->radnici[i].getGodinaStaza() < s2) {
-				temp->getRadnici().push_back(this->getRadnici()[i]);
-			}
-		}
-
-		if (temp->getRadnici().size() == 0) {
-			cout << "U sistemu nema radnika s tim imenom!\n";
-		}
-
-		else {
-			temp->ispisPlata();
 		}
 	}
 }
@@ -214,7 +203,7 @@ void Plata::otpustiRadnika()
 		int rbZaOtpust;
 		do {
 			this->ispisRadnika();
-			cout << "\nUnesite redni broj radnika kojeg zelite otpustiti: ";
+			cout << "\n\n\t\t\tUnesite redni broj radnika kojeg zelite otpustiti: ";
 			cin >> rbZaOtpust;
 			cin.ignore();
 		} while (rbZaOtpust > this->getRadnici().size() || rbZaOtpust < 1);
@@ -222,10 +211,16 @@ void Plata::otpustiRadnika()
 		this->radnici.erase(this->radnici.begin() + rbZaOtpust - 1);
 
 		cout << "\n\t\t\tRadnik pored rednim brojem " << rbZaOtpust << " uspjesno otpusten!\n";
+		cout << "\t\t\tPritisnite ENTER za prikaz novog spiska!\n";
 
 		system("PAUSE");
 		system("CLS");
-		cout << "\t\t\tNovi spisak radnika: \n";
+
+		cout << "\n\n\t\t\t RENTAL PARTNER\n";
+		cout << "\t\t\t  ________________\n";
+		cout << "\t\t\t |                |\n";
+		cout << "\t\t\t |  ISPIS RADNIKA |\n";
+		cout << "\t\t\t |________________|\n";
 
 		this->ispisRadnika();
 

@@ -18,9 +18,6 @@ public:
 
 	Skladiste();
 
-	void setKapacitetStvariUSkladistu();
-	int getKapacitetStvariUSkladistu();
-
 	void setSpremiOpremuUSkladiste();
 	vector<Oprema>& getSpremljenoIzSkladista();
 
@@ -30,8 +27,12 @@ public:
 	void prikazSkladista();
 
 	void pretragaPoNazivu();
+	void pretragaPoBrendu();
 
 	void fiskalni_racun();
+
+	void prikaziFiskalniRacun();
+
 
 	int getUkupanBrojOpremeNaStanju();
 
